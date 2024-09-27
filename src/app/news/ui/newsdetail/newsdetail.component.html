@@ -1,0 +1,127 @@
+<ng-container *ngIf="appData.isLoading$ | async">
+  <div class="flex items-center justify-center mt-10">
+    <div role="status">
+      <svg aria-hidden="true" class="w-16 h-16 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+        viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+          fill="currentColor" />
+        <path
+          d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+          fill="currentFill" />
+      </svg>
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="!(appData.isLoading$ | async)">
+  <ng-container *ngIf="($articles | async) as articles">
+    <!-- Blog Article -->
+    <div class="max-w-3xl px-4 pt-6 lg:pt-10 pb-12 sm:px-6 lg:px-8 mx-auto">
+      <div class="max-w-2xl">
+        <!-- Avatar Media -->
+        <div class="flex justify-between items-center mb-6">
+          <div class="flex w-full sm:items-center gap-x-5 sm:gap-x-3">
+
+            <div class="grow">
+              <div class="flex justify-between items-center gap-x-2">
+                <div>
+                  <!-- Tooltip -->
+                  <div class="hs-tooltip [--trigger:hover] [--placement:bottom] inline-block">
+                    <div class="hs-tooltip-toggle sm:mb-1 block text-start cursor-pointer">
+                     <div (click)="goBack()" class="flex items-center gap-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                           <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18" />
+                        </svg>
+                        
+                        <span class="font-semibold text-gray-800 dark:text-neutral-200">
+                           {{ article.source }}
+                        </span>
+                     </div>
+
+                      <!-- Dropdown Card -->
+                      <div
+                        class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 max-w-xs cursor-default bg-gray-900 divide-y divide-gray-700 shadow-lg rounded-xl dark:bg-neutral-950 dark:divide-neutral-700"
+                        role="tooltip">
+                        <!-- Body -->
+                        <div class="p-4 sm:p-5">
+                          <div class="mb-2 flex w-full sm:items-center gap-x-5 sm:gap-x-3">
+
+                            <div class="grow">
+                              <div (click)="goBack()" class="flex items-center gap-4">
+                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18" />
+                                 </svg>
+                                 
+                                 <p class="text-lg font-semibold text-gray-200 dark:text-neutral-200">
+                                 {{ article.source }}
+                                 </p>
+                              </div>
+                            </div>
+                          </div>
+                          <p class="text-sm text-gray-400 dark:text-neutral-400">
+                            Leyla is a Customer Success Specialist at Preline and spends her time speaking to in-house
+                            recruiters all over the world.
+                          </p>
+                        </div>
+                        <!-- End Body -->
+
+                        <!-- Footer -->
+                        <div class="flex justify-between items-center px-4 py-3 sm:px-5">
+                          <div>
+                            <button type="button"
+                              class="py-1.5 px-2.5 inline-flex items-center gap-x-2 text-xs font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
+                              <svg class="shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                                <path fill-rule="evenodd"
+                                  d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
+                              </svg>
+                              Follow
+                            </button>
+                          </div>
+                        </div>
+                        <!-- End Footer -->
+                      </div>
+                      <!-- End Dropdown Card -->
+                    </div>
+                  </div>
+                  <!-- End Tooltip -->
+
+                  <ul class="text-xs text-gray-500 dark:text-neutral-500">
+                    <li
+                      class="inline-block relative pe-6 last:pe-0 last-of-type:before:hidden before:absolute before:top-1/2 before:end-2 before:-translate-y-1/2 before:size-1 before:bg-gray-300 before:rounded-full dark:text-neutral-400 dark:before:bg-neutral-600">
+                      {{ article.pub_date | date: 'dd MMM yyyy'}}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End Avatar Media -->
+
+        <!-- Content -->
+        <div class="space-y-5 md:space-y-8">
+          <div class="space-y-3">
+            <h2 class="text-2xl font-bold md:text-3xl dark:text-white">{{ article.snippet }}</h2>
+
+            <p class="text-lg text-gray-800 dark:text-neutral-200">{{ article.lead_paragraph }}</p>
+          </div>
+
+          <p class="text-lg text-gray-800 dark:text-neutral-200">{{ article.abstract }}</p>
+
+          <figure>
+            <img class="w-full object-cover rounded-xl" [src]="'https://www.nytimes.com/' + article.multimedia[0]?.url"
+              *ngIf="article.multimedia?.length > 0" alt="Blog Image">
+          </figure>
+          <div class="flex items-center w-full mt-10 justify-center">
+            <a target="_blank" [href]="article.web_url" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Read More</a>
+          </div>
+         </div>
+        <!-- End Content -->
+      </div>
+    </div>
+    <!-- End Blog Article -->
+  </ng-container>
+</ng-container>

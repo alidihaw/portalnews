@@ -1,0 +1,39 @@
+<ng-container *ngIf="(appData.isLoadingAPI$ | async) as isLoadingAPI">
+  <app-loader></app-loader>
+</ng-container>
+
+<nav class="bg-gray-800">
+  <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+    <div class="relative flex h-16 items-center justify-between">
+      <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+        <div class="flex flex-shrink-0 items-center">
+          <img class="h-8 w-auto" src="assets/logo.png"
+            alt="Your Company">
+        </div>
+        <div class="hidden sm:ml-6 sm:block">
+          <div class="flex space-x-4">
+            <a class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
+              aria-current="page">Portal</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu, show/hide based on menu state. -->
+  <div class="sm:hidden" id="mobile-menu">
+    <div class="space-y-1 px-2 pb-3 pt-2">
+      <a class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white"
+        aria-current="page">Portal</a>
+    </div>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>
+
+<div class="threejs-shape1">
+  <ngt-canvas [sceneGraph]="Scene" />
+</div>
+<div class="threejs-shape2">
+  <ngt-canvas [sceneGraph]="Scene" />
+</div>

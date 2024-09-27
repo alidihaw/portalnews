@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "portalnews-86a4c"
+  },
+  "targets": {
+    "portalnews-86a4c": {
+      "hosting": {
+        "portalnews-86a4c": [
+          "portalnews-86a4c"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
